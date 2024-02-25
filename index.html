@@ -68,13 +68,13 @@
     <!-- Блок с кнопками и изображением -->
     <div id="button-container" style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); text-align: center; z-index: 999; background: url('src/pictures/background.jpg') center center no-repeat; background-size: cover; padding: 20px;">
       <!-- Кнопка с изображением слева -->
-      <button id="englishButton" onclick="playAudio('english')">
+      <button id="englishButton" onclick="playAudio('englishAudio')">
         <img src="src/pictures/UK_flag.png"  alt="English">
         English
       </button>
 
       <!-- Кнопка с изображением слева -->
-      <button id="russianButton" onclick="playAudio('russian')">
+      <button id="russianButton" onclick="playAudio('russianAudio')">
         <img src="src/pictures/russian_flag.jpg" alt="Русский">
         Русский
       </button>
@@ -118,55 +118,60 @@
     
     <!-- Скрипт для обработки выбора языка и воспроизведения аудио -->
     <script>
-      const video = document.getElementById('jelly-video');
-      const languageSelection = document.getElementById('button-container');
-      const englishAudio = document.getElementById('englishAudio');
-      const russianAudio = document.getElementById('russianAudio');
-      let selectedLanguage = null;
+  const audioContext = new (window.AudioContext || window.webkitAudioContext)();
 
-      window.addEventListener('load', function() {
-        video.play();
-        // Показываем кнопки выбора языка после загрузки страницы
-        languageSelection.style.display = 'block';
-        
-        // Добавляем обработчики событий для кнопок
-        document.getElementById('englishButton').addEventListener('click', function() {
-          selectLanguage('english');
-        });
+const audioSources = {
+  english: null,
+  russian: null,
+  audio3: null,
+  audio4: null,
+};
 
-        document.getElementById('russianButton').addEventListener('click', function() {
-          selectLanguage('russian');
-        });
-      });
+function loadAudio(language, src) {
+  return new Promise((resolve, reject) => {
+    const audioElement = new Audio(src);
+    const source = audioContext.createMediaElementSource(audioElement);
 
-      function selectLanguage(language) {
-        // Выбор языка по нажатию кнопки
-        selectedLanguage = language;
-        console.log('Выбран язык:', selectedLanguage);
+    audioElement.addEventListener('canplaythrough', () => {
+      audioSources[language] = source;
+      resolve();
+    });
 
-        // Применить выбранный язык сразу после выбора
-        applyLanguage();
-      }
+    audioElement.addEventListener('error', (error) => {
+      reject(error);
+    });
 
-      function applyLanguage() {
-        if (selectedLanguage) {
-          console.log('Выбранный язык автоматически применен:', selectedLanguage);
-          // Воспроизводим соответствующее аудио
-          if (selectedLanguage === 'english') {
-            englishAudio.play();
-          } else if (selectedLanguage === 'russian') {
-            russianAudio.play();
-          }
-          // Добавьте ваш код для обработки выбранного языка
-        } else {
-          console.log('Выберите язык перед нажатием "Применить".');
-        }
-      }
+    audioElement.preload = 'auto';
+    audioElement.load();
+  });
+}
 
-      // Функция для воспроизведения аудио при нажатии на кнопку
-      function playAudio(language) {
-        selectLanguage(language);
-      }
+async function initializeAudio() {
+  try {
+    await Promise.all([
+      loadAudio('english', 'english-audio.mp3'),
+      loadAudio('russian', 'russian-audio.mp3'),
+      loadAudio('audio3', 'audio3.mp3'),
+      loadAudio('audio4', 'audio4.mp3'),
+    ]);
+  } catch (error) {
+    console.error('Error loading audio:', error);
+  }
+}
+
+function playAudio(language) {
+  for (const key in audioSources) {
+    if (key === language && audioSources[key]) {
+      audioSources[key].connect(audioContext.destination);
+      audioSources[key].mediaElement.play();
+    } else if (audioSources[key]) {
+      audioSources[key].disconnect();
+    }
+  }
+}
+
+// Загрузка аудио при загрузке страницы
+window.addEventListener('load', initializeAudio);
     </script>
   </body>
 </html>
