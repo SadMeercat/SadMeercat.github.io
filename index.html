@@ -68,13 +68,12 @@
     <!-- Блок с кнопками и изображением -->
     <div id="button-container" style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); text-align: center; z-index: 999; background: url('src/pictures/background.jpg') center center no-repeat; background-size: cover; padding: 20px;">
       <!-- Кнопка с изображением слева -->
-      <button id="englishButton" onclick="playAudio('englishAudio')">
-        <img src="src/pictures/UK_flag.png"  alt="English">
+      <button id="englishButton" onclick="playAudio('english')">
+        <img src="src/pictures/UK_flag.png" alt="English">
         English
       </button>
-
-      <!-- Кнопка с изображением слева -->
-      <button id="russianButton" onclick="playAudio('russianAudio')">
+      
+      <button id="russianButton" onclick="playAudio('russian')">
         <img src="src/pictures/russian_flag.jpg" alt="Русский">
         Русский
       </button>
@@ -98,10 +97,10 @@
           src="https://cdn.glitch.global/a4529633-cd34-457f-bfaa-7e1f25d4da7a/1231.mp4">
         </video>
         <!-- Аудио-ресурсы для разных языков -->
-        <audio id="englishAudio" loop>
+        <audio id="english" loop>
           <source src="src/sounds/ENGLISH/1.mp3" type="audio/mp3">
         </audio>
-        <audio id="russianAudio" loop>
+        <audio id="russian" loop>
           <source src="src/sounds/RUSSIAN/1.mp3" type="audio/mp3">
         </audio>
       </a-assets>
@@ -118,60 +117,29 @@
     
     <!-- Скрипт для обработки выбора языка и воспроизведения аудио -->
     <script>
-  const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-
-const audioSources = {
+// Объект для хранения текущего воспроизводимого аудио
+const currentAudio = {
   english: null,
   russian: null,
   audio3: null,
   audio4: null,
 };
 
-function loadAudio(language, src) {
-  return new Promise((resolve, reject) => {
-    const audioElement = new Audio(src);
-    const source = audioContext.createMediaElementSource(audioElement);
-
-    audioElement.addEventListener('canplaythrough', () => {
-      audioSources[language] = source;
-      resolve();
-    });
-
-    audioElement.addEventListener('error', (error) => {
-      reject(error);
-    });
-
-    audioElement.preload = 'auto';
-    audioElement.load();
-  });
-}
-
-async function initializeAudio() {
-  try {
-    await Promise.all([
-      loadAudio('english', 'english-audio.mp3'),
-      loadAudio('russian', 'russian-audio.mp3'),
-      loadAudio('audio3', 'audio3.mp3'),
-      loadAudio('audio4', 'audio4.mp3'),
-    ]);
-  } catch (error) {
-    console.error('Error loading audio:', error);
-  }
-}
-
 function playAudio(language) {
-  for (const key in audioSources) {
-    if (key === language && audioSources[key]) {
-      audioSources[key].connect(audioContext.destination);
-      audioSources[key].mediaElement.play();
-    } else if (audioSources[key]) {
-      audioSources[key].disconnect();
-    }
+  // Останавливаем текущее воспроизведение аудио, если оно есть
+  if (currentAudio[language]) {
+    currentAudio[language].pause();
+    currentAudio[language].currentTime = 0;
+  }
+
+  // Воспроизводим новое аудио, если оно не находится в состоянии воспроизведения
+  if (currentAudio[language] && currentAudio[language].paused) {
+    currentAudio[language].play().catch(error => {
+      // Обработка ошибки воспроизведения (например, ввод юзера)
+      console.error('Error playing audio:', error);
+    });
   }
 }
-
-// Загрузка аудио при загрузке страницы
-window.addEventListener('load', initializeAudio);
     </script>
   </body>
 </html>
