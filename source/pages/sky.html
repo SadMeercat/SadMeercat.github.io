@@ -24,26 +24,26 @@
     </button>
   </div>
 
-  <a-scene mindar-image="imageTargetSrc: ../marker/lachta.mind;" color-space="sRGB"
+  <a-scene mindar-image="imageTargetSrc: ../marker/sky.mind;" color-space="sRGB"
     renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false"
     device-orientation-permission-ui="enabled: false">
 
     <a-assets>
-      <video id="lachta" autoplay loop muted crossorigin="anonymous" src="../video/lachta.mp4">
+      <video id="sky" autoplay loop muted crossorigin="anonymous" src="../video/sky.mp4">
       </video>
       <!-- Аудио-ресурсы для разных языков -->
       <audio id="englishAudio" loop>
-        <source src="../sounds/ENGLISH/1.mp3" type="audio/mp3">
+        <source src="../sounds/ENGLISH/sky.mp3" type="audio/mp3">
       </audio>
       <audio id="russianAudio" loop>
-        <source src="../sounds/RUSSIAN/1.mp3" type="audio/mp3">
+        <source src="../sounds/RUSSIAN/sky.mp3" type="audio/mp3">
       </audio>
     </a-assets>
 
     <a-camera position="0 0 0" look-controls="enabled: false" cursor="rayOrigin: mouse;"></a-camera>
 
     <a-entity mindar-image-target="targetIndex: 0">
-      <a-video src="#lachta" width="1" height="0.75"></a-video>
+      <a-video src="#sky" width="1" height="0.75"></a-video>
     </a-entity>
 
     <!-- Добавлены компоненты raycaster и cursor -->
