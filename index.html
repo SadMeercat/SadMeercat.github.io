@@ -2,73 +2,7 @@
 
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <style>
-    /* Стили для кнопок и изображений */
-    #button-container {
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      text-align: center;
-      z-index: 999;
-      background: url('https://example.com/button-container-image.png') center center no-repeat;
-      background-size: contain;
-      /* изменено на contain */
-      background-color: rgba(255, 255, 255, 0.8);
-      /* добавлен белый фон с прозрачностью */
-      padding: 20px;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
-      /* Расстояние между кнопками */
-    }
-
-    #button-container button img {
-      max-width: 100%;
-      max-height: 100%;
-      margin-right: 10px;
-      /* Отступ справа от изображения */
-    }
-
-    /* Стили для кнопок и изображений */
-    #button-container {
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      text-align: center;
-      z-index: 999;
-      background: url('https://example.com/button-container-image.png') center center no-repeat;
-      background-size: cover;
-      padding: 20px;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
-      /* Расстояние между кнопками */
-    }
-
-    #button-container button {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 10px;
-      /* Уменьшенный размер кнопок */
-      width: 200px;
-      /* Ширина кнопок */
-      height: 40px;
-      /* Высота кнопок */
-    }
-
-    #button-container button img {
-      max-width: 100%;
-      max-height: 100%;
-      margin-right: 10px;
-      /* Отступ справа от изображения */
-      order: -1;
-      /* Изображение будет расположено перед текстом */
-    }
-  </style>
+  <link rel="stylesheet" href="./source/style.css">
   <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
   <script src="https://cdn.rawgit.com/cozmo/jsQR/master/dist/jsQR.js"></script>
@@ -90,13 +24,12 @@
     </button>
   </div>
 
-  <a-scene mindar-image="imageTargetSrc: ./source/marker/lachta.mind;" 
-  color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" 
-  device-orientation-permission-ui="enabled: false">
+  <a-scene mindar-image="imageTargetSrc: ./source/marker/lachta.mind;" color-space="sRGB"
+    renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false"
+    device-orientation-permission-ui="enabled: false">
 
     <a-assets>
-      <video id="lachta" autoplay loop muted crossorigin="anonymous"
-        src="./source/video/lachta.mp4">
+      <video id="lachta" autoplay loop muted crossorigin="anonymous" src="./source/video/lachta.mp4">
       </video>
       <!-- Аудио-ресурсы для разных языков -->
       <audio id="englishAudio" loop>
@@ -118,48 +51,7 @@
   </a-scene>
 
   <!-- Скрипт для обработки выбора языка и воспроизведения аудио -->
-  <script>
-    document.getElementById('englishButton').addEventListener('click', function () {
-      playAudio('english');
-    });
-
-    document.getElementById('russianButton').addEventListener('click', function () {
-      playAudio('russian');
-    });
-    // Объект для хранения текущего воспроизводимого аудио
-    const currentAudio = {
-      english: null,
-      russian: null,
-      audio3: null,
-      audio4: null,
-    };
-
-    let currentLanguage = null;
-
-    function playAudio(language) {
-      // Останавливаем текущее воспроизведение аудио, если оно есть
-      if (currentAudio[currentLanguage]) {
-        currentAudio[currentLanguage].pause();
-        currentAudio[currentLanguage].currentTime = 0;
-      }
-
-      // Воспроизводим новое аудио, если оно не находится в состоянии воспроизведения
-      if (currentAudio[language] && currentAudio[language].paused) {
-        currentLanguage = language;
-        currentAudio[language].play().catch(error => {
-          // Обработка ошибки воспроизведения (например, ввод юзера)
-          console.error('Error playing audio:', error);
-        });
-      }
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      currentAudio.english = document.getElementById('englishAudio');
-      currentAudio.russian = document.getElementById('russianAudio');
-      currentAudio.audio3 = document.getElementById('audio3');
-      currentAudio.audio4 = document.getElementById('audio4');
-    });
-  </script>
+  <script src="./source/scriptAudio.js"></script>
 </body>
 
 </html>
