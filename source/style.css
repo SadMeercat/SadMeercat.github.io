@@ -1,21 +1,19 @@
     /* Стили для кнопок и изображений */
     #button-container {
-        position: absolute;
-        bottom: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        text-align: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
         z-index: 999;
-        background: url('/pictures/background.jpg') center center no-repeat;
-        background-size: contain;
-        /* изменено на contain */
+        background: url('../source/pictures/background.jpg') center center no-repeat;
+        background-size: cover;
         background-color: rgba(255, 255, 255, 0.8);
-        /* добавлен белый фон с прозрачностью */
         padding: 20px;
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-        /* Расстояние между кнопками */
     }
 
     #button-container button img {
@@ -32,7 +30,8 @@
         justify-content: center;
         padding: 10px;
         /* Уменьшенный размер кнопок */
-        width: 200px;
+        width: 50%;
+        max-width: 200px;
         /* Ширина кнопок */
         height: 40px;
         /* Высота кнопок */
