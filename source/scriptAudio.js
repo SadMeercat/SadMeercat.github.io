@@ -50,5 +50,6 @@ document.getElementById('russianButton').addEventListener('click', function() {
 });
 
 function hideButtonContainer() {
-    document.getElementById('button-container').style.display = 'none';
+    const buttonContainer = document.getElementById('button-container');
+    buttonContainer.classList.add('hidden'); // Добавляем класс hidden для скрытия контейнера
 }
