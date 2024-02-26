@@ -90,17 +90,17 @@
     </button>
   </div>
 
-  <a-scene mindar-image mindar-image-target="targetIndex: 0" color-space="sRGB"
-    renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false"
-    device-orientation-permission-ui="enabled: false">
+  <a-scene mindar-image="imageTargetSrc: /source/marker/lachta.mind;" 
+  color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" 
+  device-orientation-permission-ui="enabled: false">
 
     <a-assets>
       <img id="card"
-        src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/examples/image-tracking/assets/card-example/card.png" />
+        src="/source/pictures/lachta.tif" />
       <a-asset-item id="avatarModel"
         src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/examples/image-tracking/assets/card-example/softmind/scene.gltf"></a-asset-item>
-      <video id="jelly-video" autoplay loop muted crossorigin="anonymous"
-        src="https://cdn.glitch.global/a4529633-cd34-457f-bfaa-7e1f25d4da7a/1231.mp4">
+      <video id="lachta" autoplay loop muted crossorigin="anonymous"
+        src="/source/video/lachta.mp4">
       </video>
       <!-- Аудио-ресурсы для разных языков -->
       <audio id="englishAudio" loop>
@@ -114,7 +114,7 @@
     <a-camera position="0 0 0" look-controls="enabled: false" cursor="rayOrigin: mouse;"></a-camera>
 
     <a-entity mindar-image-target="targetIndex: 0">
-      <a-video src="#jelly-video" width="1" height="0.75"></a-video>
+      <a-video src="#lachta" width="1" height="0.75"></a-video>
     </a-entity>
 
     <!-- Добавлены компоненты raycaster и cursor -->
