@@ -69,12 +69,12 @@
     <div id="button-container" style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); text-align: center; z-index: 999; background: url('src/pictures/background.jpg') center center no-repeat; background-size: cover; padding: 20px;">
       <!-- Кнопка с изображением слева -->
       <button id="englishButton" onclick="playAudio('english')">
-        <img src="src/pictures/UK_flag.png" alt="English">
+        <img src="source/pictures/UK_flag.png" alt="English">
         English
       </button>
       
       <button id="russianButton" onclick="playAudio('russian')">
-        <img src="src/pictures/russian_flag.jpg" alt="Русский">
+        <img src="source/pictures/russian_flag.jpg" alt="Русский">
         Русский
       </button>
     </div>
@@ -97,11 +97,11 @@
           src="https://cdn.glitch.global/a4529633-cd34-457f-bfaa-7e1f25d4da7a/1231.mp4">
         </video>
         <!-- Аудио-ресурсы для разных языков -->
-        <audio id="english" loop>
-          <source src="src/sounds/ENGLISH/1.mp3" type="audio/mp3">
+        <audio id="englishAudio" loop>
+          <source src="./source/sounds/ENGLISH/1.mp3" type="audio/mp3">
         </audio>
-        <audio id="russian" loop>
-          <source src="src/sounds/RUSSIAN/1.mp3" type="audio/mp3">
+        <audio id="russianAudio" loop>
+          <source src="./source/sounds/RUSSIAN/1.mp3" type="audio/mp3">
         </audio>
       </a-assets>
 
@@ -117,6 +117,15 @@
     
     <!-- Скрипт для обработки выбора языка и воспроизведения аудио -->
     <script>
+      document.getElementById('englishButton').addEventListener('click', function() {
+  console.log('English button clicked');
+  playAudio('english');
+});
+
+document.getElementById('russianButton').addEventListener('click', function() {
+  console.log('Russian button clicked');
+  playAudio('russian');
+});
 // Объект для хранения текущего воспроизводимого аудио
 const currentAudio = {
   english: null,
@@ -126,6 +135,7 @@ const currentAudio = {
 };
 
 function playAudio(language) {
+  console.log("playing")
   // Останавливаем текущее воспроизведение аудио, если оно есть
   if (currentAudio[language]) {
     currentAudio[language].pause();
@@ -134,12 +144,20 @@ function playAudio(language) {
 
   // Воспроизводим новое аудио, если оно не находится в состоянии воспроизведения
   if (currentAudio[language] && currentAudio[language].paused) {
+    
     currentAudio[language].play().catch(error => {
       // Обработка ошибки воспроизведения (например, ввод юзера)
       console.error('Error playing audio:', error);
     });
   }
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  currentAudio.english = document.getElementById('englishAudio');
+  currentAudio.russian = document.getElementById('russianAudio');
+  currentAudio.audio3 = document.getElementById('audio3');
+  currentAudio.audio4 = document.getElementById('audio4');
+});
     </script>
   </body>
 </html>
