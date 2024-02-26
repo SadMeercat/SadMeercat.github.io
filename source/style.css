@@ -6,7 +6,7 @@
         transform: translateX(-50%);
         text-align: center;
         z-index: 999;
-        background: url('https://example.com/button-container-image.png') center center no-repeat;
+        background: url('/source/pictures/background.jpg') center center no-repeat;
         background-size: contain;
         /* изменено на contain */
         background-color: rgba(255, 255, 255, 0.8);
@@ -23,23 +23,6 @@
         max-height: 100%;
         margin-right: 10px;
         /* Отступ справа от изображения */
-    }
-
-    /* Стили для кнопок и изображений */
-    #button-container {
-        position: absolute;
-        bottom: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        text-align: center;
-        z-index: 999;
-        background: url('https://example.com/button-container-image.png') center center no-repeat;
-        background-size: cover;
-        padding: 20px;
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-        /* Расстояние между кнопками */
     }
 
     #button-container button {
