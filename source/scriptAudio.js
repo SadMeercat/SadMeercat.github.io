@@ -1,9 +1,11 @@
 document.getElementById('englishButton').addEventListener('click', function () {
     playAudio('english');
+    hideButtonContainer();
 });
 
 document.getElementById('russianButton').addEventListener('click', function () {
     playAudio('russian');
+    hideButtonContainer();
 });
 // Объект для хранения текущего воспроизводимого аудио
 const currentAudio = {
@@ -37,16 +39,6 @@ document.addEventListener('DOMContentLoaded', () => {
     currentAudio.russian = document.getElementById('russianAudio');
     currentAudio.audio3 = document.getElementById('audio3');
     currentAudio.audio4 = document.getElementById('audio4');
-});
-
-document.getElementById('englishButton').addEventListener('click', function() {
-    selectLanguage('english');
-    hideButtonContainer();
-});
-
-document.getElementById('russianButton').addEventListener('click', function() {
-    selectLanguage('russian');
-    hideButtonContainer();
 });
 
 function hideButtonContainer() {
