@@ -98,10 +98,10 @@
         </video>
         <!-- Аудио-ресурсы для разных языков -->
         <audio id="english" loop>
-          <source src="source/sounds/ENGLISH/1.mp3" type="audio/mp3">
+          <source src="./source/sounds/ENGLISH/1.mp3" type="audio/mp3">
         </audio>
         <audio id="russian" loop>
-          <source src="source/sounds/RUSSIAN/1.mp3" type="audio/mp3">
+          <source src="./source/sounds/RUSSIAN/1.mp3" type="audio/mp3">
         </audio>
       </a-assets>
 
@@ -126,6 +126,7 @@ const currentAudio = {
 };
 
 function playAudio(language) {
+  console.log("playing")
   // Останавливаем текущее воспроизведение аудио, если оно есть
   if (currentAudio[language]) {
     currentAudio[language].pause();
@@ -134,6 +135,7 @@ function playAudio(language) {
 
   // Воспроизводим новое аудио, если оно не находится в состоянии воспроизведения
   if (currentAudio[language] && currentAudio[language].paused) {
+    
     currentAudio[language].play().catch(error => {
       // Обработка ошибки воспроизведения (например, ввод юзера)
       console.error('Error playing audio:', error);
