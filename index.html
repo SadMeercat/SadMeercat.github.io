@@ -97,10 +97,10 @@
           src="https://cdn.glitch.global/a4529633-cd34-457f-bfaa-7e1f25d4da7a/1231.mp4">
         </video>
         <!-- Аудио-ресурсы для разных языков -->
-        <audio id="english" loop>
+        <audio id="englishAudio" loop>
           <source src="./source/sounds/ENGLISH/1.mp3" type="audio/mp3">
         </audio>
-        <audio id="russian" loop>
+        <audio id="russianAudio" loop>
           <source src="./source/sounds/RUSSIAN/1.mp3" type="audio/mp3">
         </audio>
       </a-assets>
@@ -151,6 +151,13 @@ function playAudio(language) {
     });
   }
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  currentAudio.english = document.getElementById('englishAudio');
+  currentAudio.russian = document.getElementById('russianAudio');
+  currentAudio.audio3 = document.getElementById('audio3');
+  currentAudio.audio4 = document.getElementById('audio4');
+});
     </script>
   </body>
 </html>
