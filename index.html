@@ -117,6 +117,15 @@
     
     <!-- Скрипт для обработки выбора языка и воспроизведения аудио -->
     <script>
+      document.getElementById('englishButton').addEventListener('click', function() {
+  console.log('English button clicked');
+  selectLanguage('english');
+});
+
+document.getElementById('russianButton').addEventListener('click', function() {
+  console.log('Russian button clicked');
+  selectLanguage('russian');
+});
 // Объект для хранения текущего воспроизводимого аудио
 const currentAudio = {
   english: null,
