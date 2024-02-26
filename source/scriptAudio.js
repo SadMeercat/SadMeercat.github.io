@@ -38,3 +38,17 @@ document.addEventListener('DOMContentLoaded', () => {
     currentAudio.audio3 = document.getElementById('audio3');
     currentAudio.audio4 = document.getElementById('audio4');
 });
+
+document.getElementById('englishButton').addEventListener('click', function() {
+    selectLanguage('english');
+    hideButtonContainer();
+});
+
+document.getElementById('russianButton').addEventListener('click', function() {
+    selectLanguage('russian');
+    hideButtonContainer();
+});
+
+function hideButtonContainer() {
+    document.getElementById('button-container').style.display = 'none';
+}

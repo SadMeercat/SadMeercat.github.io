@@ -6,7 +6,7 @@
         transform: translateX(-50%);
         text-align: center;
         z-index: 999;
-        background: url('/source/pictures/background.jpg') center center no-repeat;
+        background: url('/pictures/background.jpg') center center no-repeat;
         background-size: contain;
         /* изменено на contain */
         background-color: rgba(255, 255, 255, 0.8);
