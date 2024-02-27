@@ -66,6 +66,5 @@
         max-width: 240px;
         object-fit: cover;
         width: 90%;
-        margin-bottom: 40px;
-        margin: auto;
+        margin: 40px auto;
     }
