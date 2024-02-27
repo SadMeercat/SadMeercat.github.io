@@ -59,7 +59,7 @@ function hideButtonContainer() {
     buttonContainer.classList.add('hidden'); // Добавляем класс hidden для скрытия контейнера
 }
 
-const video = document.getElementById('altai');
+const video = document.getElementById('video');
 window.addEventListener('load', function () {
   video.play();
   video.muted = true;
