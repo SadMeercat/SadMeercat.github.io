@@ -63,9 +63,9 @@
     }
 
     #logo {
-        max-width: 300px;
+        max-width: 260px;
         object-fit: cover;
         width: 90%;
-        margin-bottom: 100px;
+        margin-bottom: 60px;
         margin: auto;
     }
