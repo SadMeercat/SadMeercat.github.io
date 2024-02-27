@@ -40,7 +40,7 @@
     device-orientation-permission-ui="enabled: false">
 
     <a-assets>
-      <video id="leopard" autoplay loop muted crossorigin="anonymous" src="../video/leopard.mp4">
+      <video id="video" loop muted crossorigin="anonymous" src="../video/leopard.mp4">
       </video>
       <!-- Аудио-ресурсы для разных языков -->
       <audio id="englishAudio" loop>
@@ -60,7 +60,7 @@
     <a-camera position="0 0 0" look-controls="enabled: false" cursor="rayOrigin: mouse;"></a-camera>
 
     <a-entity mindar-image-target="targetIndex: 0">
-      <a-video src="#leopard" width="1" height="0.75"></a-video>
+      <a-video src="#video" width="1" height="0.75"></a-video>
     </a-entity>
 
     <!-- Добавлены компоненты raycaster и cursor -->
