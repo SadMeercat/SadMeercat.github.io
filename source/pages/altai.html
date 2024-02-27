@@ -6,6 +6,15 @@
   <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
   <script src="https://cdn.rawgit.com/cozmo/jsQR/master/dist/jsQR.js"></script>
+
+    <!-- Скрипт для автоматического воспроизведения видео -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const video = document.getElementById('altai');
+        video.play();
+        video.muted = false;
+      });
+    </script>
 </head>
 
 <body>
@@ -51,14 +60,6 @@
 
   <!-- Скрипт для обработки выбора языка и воспроизведения аудио -->
   <script src="../scriptAudio.js"></script>
-
-  <!-- Скрипт для автоматического воспроизведения видео -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const video = document.getElementById('altai');
-      video.play();
-    });
-  </script>
   
 </body>
 
