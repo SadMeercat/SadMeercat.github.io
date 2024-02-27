@@ -1,20 +1,20 @@
 document.getElementById('englishButton').addEventListener('click', function () {
-    playAudio('english');
+    setLanguage('english');
     hideButtonContainer();
 });
 
 document.getElementById('russianButton').addEventListener('click', function () {
-    playAudio('russian');
+    setLanguage('russian');
     hideButtonContainer();
 });
 
 document.getElementById('spanishButton').addEventListener('click', function () {
-    playAudio('spanish');
+    setLanguage('spanish');
     hideButtonContainer();
 });
 
 document.getElementById('arabicButton').addEventListener('click', function () {
-    playAudio('arabic');
+    setLanguage('arabic');
     hideButtonContainer();
 });
 // Объект для хранения текущего воспроизводимого аудио
@@ -22,12 +22,14 @@ const currentAudio = {
     english: null,
     russian: null,
     spanish: null,
-    arabic: null,
-    audio3: null,
-    audio4: null,
+    arabic: null
 };
 
 let currentLanguage = null;
+
+function setLanguage(language){
+    currentLanguage = language;
+}
 
 function playAudio(language) {
     // Останавливаем текущее воспроизведение аудио, если оно есть
@@ -38,7 +40,6 @@ function playAudio(language) {
 
     // Воспроизводим новое аудио, если оно не находится в состоянии воспроизведения
     if (currentAudio[language] && currentAudio[language].paused) {
-        currentLanguage = language;
         currentAudio[language].play().catch(error => {
             // Обработка ошибки воспроизведения (например, ввод юзера)
             console.error('Error playing audio:', error);
@@ -51,8 +52,6 @@ document.addEventListener('DOMContentLoaded', () => {
     currentAudio.russian = document.getElementById('russianAudio');
     currentAudio.spanish = document.getElementById('spanishAudio');
     currentAudio.arabic = document.getElementById('arabicAudio');
-    currentAudio.audio3 = document.getElementById('audio3');
-    currentAudio.audio4 = document.getElementById('audio4');
 });
 
 function hideButtonContainer() {
