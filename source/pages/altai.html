@@ -71,7 +71,7 @@
   <script src="../scriptAudio.js"></script>
   <!-- Скрипт для автоматического воспроизведения видео -->
   <script>
-    document.addEventListener('DOMContentLoaded', function () {
+    window.addEventListener('load', function () {
       const video = document.getElementById('altai');
       video.play();
       video.muted = true;
