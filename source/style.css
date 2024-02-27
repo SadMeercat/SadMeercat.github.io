@@ -24,6 +24,7 @@
         flex-wrap: wrap;
         justify-content: space-between;
         gap: 20px; 
+        margin: 0 auto;
     }
 
     #button-container button img {
@@ -62,7 +63,9 @@
     }
 
     #logo {
+        max-width: 300px;
         object-fit: cover;
         width: 90%;
         margin-bottom: 100px;
+        margin: auto;
     }
