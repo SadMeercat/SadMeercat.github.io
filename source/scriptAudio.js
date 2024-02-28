@@ -63,7 +63,5 @@ function hideButtonContainer() {
 
 const video = document.getElementById('video');
 window.addEventListener('load', function () {
-//   video.play();
-//   video.muted = true;
-  playAudio(currentLanguage);
+    playAudio(currentLanguage);
 });
