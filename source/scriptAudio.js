@@ -45,6 +45,8 @@ function playAudio(language) {
             console.error('Error playing audio:', error);
         });
     }
+    video.muted = true;
+    video.play();
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -61,7 +63,7 @@ function hideButtonContainer() {
 
 const video = document.getElementById('video');
 window.addEventListener('load', function () {
-  video.play();
-  video.muted = true;
+//   video.play();
+//   video.muted = true;
   playAudio(currentLanguage);
 });
